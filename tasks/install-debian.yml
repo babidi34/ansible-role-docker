@@ -15,9 +15,9 @@
     mode: 0700
     validate_certs: no
   with_items:
-    - https://download.docker.com/linux/debian/dists/buster/pool/stable/amd64/containerd.io_{{containerd_version}}_amd64.deb
-    - https://download.docker.com/linux/debian/dists/buster/pool/stable/amd64/docker-ce_{{docker_ce_version}}~3-0~debian-buster_amd64.deb
-    - https://download.docker.com/linux/debian/dists/buster/pool/stable/amd64/docker-ce-cli_{{docker_ce_cli_version}}~3-0~debian-buster_amd64.deb
+    - "https://download.docker.com/linux/debian/dists/{{ansible_distribution_release}}/pool/stable/amd64/containerd.io_{{containerd_version}}_amd64.deb"
+    - "https://download.docker.com/linux/debian/dists/{{ansible_distribution_release}}/pool/stable/amd64/docker-ce_{{docker_ce_version}}~debian-{{ansible_distribution_release}}_amd64.deb"
+    - "https://download.docker.com/linux/debian/dists/{{ansible_distribution_release}}/pool/stable/amd64/docker-ce-cli_{{docker_ce_cli_version}}~debian-{{ansible_distribution_release}}_amd64.deb"
   run_once: yes
 
 - name: Install docker deb 
