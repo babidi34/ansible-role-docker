@@ -1,0 +1,6 @@
+---
+# defaults file for roles/docker
+
+containerd_version: "1.5.10-1"
+docker_ce_version: "20.10.9"
+docker_ce_cli_version: "20.10.9"

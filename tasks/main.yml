@@ -1,0 +1,34 @@
+---
+# tasks file for roles/docker
+
+
+- name: Install docker regarding distribution 
+  include_tasks: install-{{ ansible_os_family | lower }}.yml 
+
+- name: enable and start docker
+  systemd:
+    name: "{{item}}"
+    state: started
+    enabled: yes
+  with_items:
+    - docker.service
+    - docker.socket
+  when: docker is defined
+  ignore_errors: yes
+
+- name: add vagrant to docker
+  ansible.builtin.user:
+    name: vagrant
+    groups: vagrant,docker
+  when: docker is defined
+  ignore_errors: yes
+
+- name: restart docker
+  systemd:
+    name: "{{item}}"
+    state: restarted
+  with_items:
+    - docker.service
+    - docker.socket
+  when: docker is defined
+  ignore_errors: yes
