@@ -37,6 +37,9 @@
     name: python3-pip
     state: latest
 
-- name: Install docker for python
+- name: Install docker and docker-compose for python
   pip:
-    name: docker==4.4.4
+    name:
+      - docker=={{docker_pip_version}}
+      - docker-compose
+    extra_args: "--no-cache-dir"
